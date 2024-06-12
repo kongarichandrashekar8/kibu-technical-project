@@ -25,7 +25,7 @@ export default function NotesPage() {
   const [loading, setLoading] = React.useState(true);
   const { toast } = useToast();
 
-  //API operations
+  //API calls
   const getMembers = async () => {
     try {
       const response = await fetch('http://localhost:3000/member');
@@ -66,7 +66,7 @@ export default function NotesPage() {
       const reversedNotes = notes.reverse();
   
       setCurrentNotes(reversedNotes);
-      setSelectedNote(reversedNotes.length > 0 ? reversedNotes[0] : undefined);
+      setSelectedNote(reversedNotes.length > 0 ? reversedNotes[0] : null);
     } catch (error) {
       toast({
         title: 'Something went wrong, please try again later',
@@ -101,6 +101,8 @@ export default function NotesPage() {
       toast({
         title: message,
       });
+
+      addToAuditLog(updatedNote.id, updatedNote.text, updatedNote.timestamp);
     } catch (error) {
       toast({
         title: 'Something went wrong, please try again later',
@@ -134,7 +136,7 @@ export default function NotesPage() {
       });
     }
   };
-  const createNote = async (newNote?: Note) => {
+  const createNote = async (newNote: Note) => {
     try {
       const response = await fetch(`http://localhost:3000/notes`, {
         method: 'POST',
@@ -149,6 +151,7 @@ export default function NotesPage() {
       const data = await response.json();
       setCurrentNotes((prevnotes) => [data, ...prevnotes]);
       setSelectedNote(data);
+      addToAuditLog(newNote.id, newNote.text, newNote.timestamp);
     } catch (error) {
       toast({
         title: 'Something went wrong, please try again later',
@@ -191,7 +194,7 @@ export default function NotesPage() {
           }
         );
       } else {
-        // Note does not exist in the audit log, create a new entry
+        // Note does not exist in the audit log, creating a new entry
         await fetch(`http://localhost:3000/audit_log`, {
           method: 'POST',
           headers: {
@@ -222,6 +225,9 @@ export default function NotesPage() {
       if (!response.ok) {
         throw new Error('Failed to delete the note');
       }
+      if(selectedNote){
+        deleteAuditLogs(selectedNote.id)
+      }
       const updatedCurrentNotes = currentNotes.filter(
         (note) => note.id != selectedNote?.id
       );
@@ -243,6 +249,40 @@ export default function NotesPage() {
     }
   };
 
+  const deleteAuditLogs = async (noteId: string) => {
+    try {
+      // getting audit logs by note ID
+      const fetchResponse = await fetch(`http://localhost:3000/audit_log?note=${noteId}`);
+      if (!fetchResponse.ok) {
+        throw new Error('Failed to fetch audit logs');
+      }
+  
+      const data = await fetchResponse.json();
+  
+      if (!data.length) {
+        return;
+      }
+  
+      // Delete each audit log entry
+      for (const logEntry of data) {
+        const deleteResponse = await fetch(`http://localhost:3000/audit_log/${logEntry.id}`, {
+          method: 'DELETE'
+        });
+  
+        if (!deleteResponse.ok) {
+          throw new Error(`Failed to delete audit log with id: ${logEntry.id}`);
+        }
+      }
+
+    } catch (error) {
+      toast({
+        title: 'Something went wrong, please try again later',
+        variant: 'destructive',
+      });
+    }
+  };
+  
+
   //Methods
 
   const addNote = () => {
@@ -252,13 +292,15 @@ export default function NotesPage() {
     const t = '';
     if (currentMember) {
       const note = {
-        id: randomNumber.toString(),
+        id: idd,
         member: currentMember.id,
-        text: '',
+        text: t,
         timestamp: timestamp,
       };
-      createNote(note);
-      addToAuditLog(idd, t, timestamp);
+      if(note){
+        createNote(note);
+      }
+      
     }
   };
 
@@ -267,7 +309,7 @@ export default function NotesPage() {
       const timestamp = new Date().toISOString();
       const updatedNote = { ...note, text: note.text, timestamp: timestamp };
       updateNote(note.id, updatedNote, 'Successfully updated the note');
-      addToAuditLog(note.id, note.text, timestamp);
+      
     }
   };
 

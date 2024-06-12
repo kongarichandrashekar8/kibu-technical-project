@@ -2,20 +2,17 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { set, z } from "zod"
+import { z } from "zod"
 import * as React from "react";
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-
   FormField,
   FormItem,
-
   FormMessage,
 } from "@/components/ui/form"
 import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/components/ui/use-toast"
 import { useEffect, useState } from "react"
 type Note = {
     id: string;
@@ -33,24 +30,11 @@ export default function TextareaForm({selectedNote,saveNote}:{selectedNote:Note,
     resolver: zodResolver(FormSchema),
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-
-    console.log('data ',data)
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
-  }
 
   const [test,setTest]=useState('')
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
   useEffect(()=>{
     setTest(selectedNote.text)
-    console.log('selectedNote.text ',selectedNote.text)
     if (textareaRef.current) {
       textareaRef.current.focus();
     }
@@ -66,10 +50,6 @@ export default function TextareaForm({selectedNote,saveNote}:{selectedNote:Note,
   }
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(test); 
-    // Handle form submission logic here
-    // You can also clear the textarea after submission
-
     saveNote({
       ...selectedNote, 'text':test
     })
@@ -84,17 +64,14 @@ export default function TextareaForm({selectedNote,saveNote}:{selectedNote:Note,
           name="test"
           render={({ field }) => (
             <FormItem>
-
               <FormControl>
                 <Textarea
                 value={test}
                 onChange={(e)=>setTests(e.currentTarget.value)}
                 ref={textareaRef}
-    
                   className="resize-none bg-[#F2F7FF]"
                 />
               </FormControl>
-  
               <FormMessage />
             </FormItem>
           )}

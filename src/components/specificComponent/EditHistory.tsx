@@ -8,7 +8,6 @@ import {
   DialogHeader,
 } from '@/components/ui/dialog';
 import { Note } from '@/types/note';
-import { useEffect } from 'react';
 const EditHistory = ({
   openModel,
   currentAudit,
@@ -25,9 +24,7 @@ const EditHistory = ({
   setOpenModel:(v:boolean)=>void
 }) => {
 
-  useEffect(()=>{
-    console.log('currentAuditList ',currentAuditList)
-  },[])
+
   return (
     <>
       <Dialog open={openModel}>
@@ -40,17 +37,17 @@ const EditHistory = ({
               </DialogDescription>
             </div>
             <div>
-              <div className="flex flex-col h-96 box-border w-lg p-6 bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700 bg-white">
+              <div className="flex flex-col h-96 box-border w-lg p-6 bg-white border border-gray-200 bg-white">
                 <ScrollArea className="flex-grow bg-blue-200 bg-white h-10 ">
                   {currentAuditList?.map((audit) => (
-                    <div className="pt-1 pb-1">
+                    <div className="pt-1 pb-1" key={audit.timestamp}>
                       <div
-                        key={audit.timestamp}
+                        
                         onClick={() => handleChangeAudit(audit.timestamp)}
                         className={`p-4 w-full max-w-md cursor-pointer flex items-center p-2 text-gray-900 rounded-lg ${
                           currentAudit?.timestamp === audit.timestamp
                             ? 'bg-[#0F70FF]'
-                            : 'bg-[#F7F7F7] dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 group'
+                            : 'bg-[#F7F7F7] hover:bg-blue-100'
                         }`}
                       >
                         <div>

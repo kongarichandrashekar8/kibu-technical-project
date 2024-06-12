@@ -14,7 +14,7 @@ const NoteList = ({handleNoteSelect,currentNotes,selectedNote}:{handleNoteSelect
                   className={`p-4 w-full max-w-md cursor-pointer flex items-center p-2 text-gray-900 rounded-lg ${
                     selectedNote?.id === note.id
                       ? 'bg-[#0F70FF]'
-                      : 'bg-[#F7F7F7] dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 group'
+                      : 'bg-[#F7F7F7] dark:text-white hover:bg-blue-100'
                   }`}
                 >
                   <p
