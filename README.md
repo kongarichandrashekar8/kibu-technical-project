@@ -44,3 +44,13 @@ npm install -g json-server
 
 json-server --watch db.json
 
+Please let me know if you face any errors while running the application.
+
+**Points to consider:**
+
+1. As per specification I utilized React Js, Typescript.
+2. I used shadcn ui library for some components.
+
+
+Thank you one again, I enjoyed working on this project, hoping for the best.
+
