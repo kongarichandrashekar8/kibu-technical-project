@@ -12,15 +12,15 @@ Thank you, I'm grateful for the opportunity to proceed to this round, the projec
 1. Notes creation requires minimum effort, when you click on + icon, it will create new note and focus the text area so you can directly write it and save.
     
     
-<img width="941" alt="ui-2" src="https://github.com/kongarichandrashekar8/kibu-project/assets/52326094/5de91203-5d36-4c96-b602-f816af095db2">
+<img width="941" alt="ui-2" src="https://github.com/kongarichandrashekar8/kibu-technical-project/blob/main/src/assets/ui-2.png">
 
  
 
 1. Viewing members, deleting note and viewing edit log/restoring note are can do in few clicks.
-   <img width="953" alt="ui-3" src="https://github.com/kongarichandrashekar8/kibu-project/assets/52326094/359dcc98-3b78-480c-9672-d24e16f71f4a">
-   <img width="945" alt="ui-4" src="https://github.com/kongarichandrashekar8/kibu-project/assets/52326094/20442bf8-1620-418a-8268-cb15d4b8f288">
+   <img width="953" alt="ui-3" src="https://github.com/kongarichandrashekar8/kibu-technical-project/blob/main/src/assets/ui-3.png">
+   <img width="945" alt="ui-4" src="https://github.com/kongarichandrashekar8/kibu-technical-project/blob/main/src/assets/ui-4.png">
     
-    <img width="812" alt="ui-5" src="https://github.com/kongarichandrashekar8/kibu-project/assets/52326094/461df6f6-6f18-411e-823d-7f6c457e6c41">
+    <img width="812" alt="ui-5" src="https://github.com/kongarichandrashekar8/kibu-technical-project/blob/main/src/assets/ui-5.png">
 
 
 Note: I allocated the majority of my time to ensure cover of all application features. Therefore, I didn't prioritize responsiveness. Please disregard any issues related to responsiveness.
