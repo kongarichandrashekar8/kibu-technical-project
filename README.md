@@ -6,7 +6,7 @@ Thank you, I'm grateful for the opportunity to proceed to this round, the projec
 
 1. From project description I understand that viewing and creating/updating notes for a user are main parts of  this project, so I wanted these parts should occupy more screen space and minimum effort to do these operations as per "Principle of Least Effort" and "Fitts's Law,”. So I made left part of the screen for viewing and creating the notes and members, where as right part mainly for updating and notes operations(deletion, audit log).
     
-    <img width="952" alt="ui-1" src="https://github.com/kongarichandrashekar8/kibu-project/assets/52326094/a41ed3da-e1f9-4b88-8a84-aa9fe2b58f75">
+    <img width="952" alt="ui-1" src="https://github.com/kongarichandrashekar8/kibu-technical-project/blob/main/src/assets/ui-1.png">
 
 
 1. Notes creation requires minimum effort, when you click on + icon, it will create new note and focus the text area so you can directly write it and save.
