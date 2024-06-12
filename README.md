@@ -28,7 +28,7 @@ Note: I allocated the majority of my time to ensure cover of all application fea
 **Instructions to run application:**
 
 
-Git repo: https://github.com/kongarichandrashekar8/kibu-project
+Git repo: https://github.com/kongarichandrashekar8/kibu-technical-project
 
 1. Clone the repo or download the repo and unzip it.
 2. Open the project in code editor(I prefer vs code).
